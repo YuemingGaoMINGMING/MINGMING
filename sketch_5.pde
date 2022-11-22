@@ -46,9 +46,7 @@ void draw() {
     fill(rectColor, currentOP);
   }
   stroke(255,currentOP);
-  rect(rectX, rectY, rectSize, rectSize);
-    
-  String a = "FIND THE ANWSER...";
+  rect(rectX, ...";
   fill(textColor,currentOP);
   textSize(34);
   textAlign(CENTER); 
