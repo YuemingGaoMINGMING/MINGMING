@@ -7,6 +7,9 @@ color currentOP;
 
 int textColor;
 
+String letters = "";
+int back = 102;
+
 boolean rectOver = false;
 
 
@@ -19,6 +22,7 @@ void setup() {
   currentOP = baseOP;
   
   textColor = 255;
+
   
   rectX = width/2;
   rectY = height/3*2;
@@ -27,7 +31,12 @@ void setup() {
 
 void draw() {
   update(mouseX, mouseY);
-  background(0);
+  background(0,currentOP);
+  
+  fill(255);
+  textSize(48);
+  textAlign(CENTER);
+  text(letters,width/2,2.05*height/3);
   
   if(currentOP>=0){
   String c = "You're____";
@@ -46,7 +55,9 @@ void draw() {
     fill(rectColor, currentOP);
   }
   stroke(255,currentOP);
-  rect(rectX, ...";
+  rect(rectX, rectY, rectSize, rectSize);
+    
+  String a = "FIND THE ANWSER...";
   fill(textColor,currentOP);
   textSize(34);
   textAlign(CENTER); 
@@ -58,7 +69,6 @@ void draw() {
   textAlign(CENTER); 
   text(b,width/2,2.05*height/3);
   
-
 }
 
 void update(int x, int y) {
@@ -85,5 +95,27 @@ boolean overRect(int x, int y, int width, int height)  {
     return true;
   } else {
     return false;
+  }
+}
+
+void keyPressed() {
+  if ((key == ENTER) || (key == RETURN)) {
+    letters = letters.toLowerCase();
+    println(letters); // Print to console to see input
+    if (letters.equals("black")) {
+      back = 0;
+    } else if (letters.equals("gray")) {
+      back = 204;
+    }
+    letters = ""; // Clear the variable
+  } else if ((key > 31) && (key != CODED)) {
+    // If the key is alphanumeric, add it to the String
+    letters = letters + key;
+  }
+    if (key == BACKSPACE) {
+    if (letters.length() > 0) {
+      letters = letters.substring(0, letters.length()-1);
+    }
+ 
   }
 }
